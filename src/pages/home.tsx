@@ -2,6 +2,7 @@ import { Box, Button } from "@mui/material"
 import { getWindowSize } from "../hooks/getWindowsize";
 import Image from "next/image";
 import HomeBlue from "../../public/Images/HomeBlue.png"
+import room from "../../public/Images/room.png"
 
 const Home = () => {
   const { height, width } = getWindowSize();
@@ -26,6 +27,19 @@ const Home = () => {
           height={50}
           width={50}
           alt={"拡声器ブルー"}>
+        </Image>
+      </div>
+      <div style={{
+        position: 'absolute',
+        top: '40%',
+        left: '3%',
+        transform: 'translate(-50%, -50%)',
+      }}>
+
+        <Image src={room}
+          height={50}
+          width={50}
+          alt={"ルーム白"}>
         </Image>
       </div>
 
