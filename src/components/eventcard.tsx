@@ -1,30 +1,46 @@
 import React from 'react';
-import { Card, CardContent, Typography, Button } from '@mui/material';
+import { Card, CardContent, Typography, Button, Paper } from '@mui/material';
+import Link from 'next/link';
 
-type CardData = {
+
+type EventData = {
     title: string;
-    date: string;
+    url: string;
     description: string;
 };
 
-const EventCard = ({ event }: { event: CardData }) => {
+type EventCardProps = {
+    event: EventData;
+};
+
+const EventCard = ({ event }: EventCardProps) => {
     return (
-        <Card>
-            <CardContent>
-                <Typography variant="h5" component="div">
-                    {event.title}
-                </Typography>
-                <Typography color="textSecondary">
-                    {event.date}
-                </Typography>
-                <Typography variant="body2">
-                    {event.description}
-                </Typography>
-                <Button variant="contained" color="primary">
-                    参加する
-                </Button>
-            </CardContent>
-        </Card>
+        <div style={{ textAlign: "center" }}>
+            <Card sx={{ backgroundColor: "#f5f5f5", margin: "auto", textAlign: "center" }}>
+                <CardContent>
+                    <Typography variant="h2" component="div" sx={{ fontWeight: "bold" }}>
+                        {event.title}
+                    </Typography>
+                    {/* <Typography color="textSecondary">
+        {event.url}
+    </Typography> */}
+                    <Typography variant="h5">
+                        {event.description}
+                    </Typography>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Link href={event.url} passHref>
+                            <Button variant="contained" color="primary" sx={{ margin: "5px" }}>
+                                + HPへ
+                            </Button>
+                        </Link>
+                        <Button variant="contained" color="success" sx={{ margin: "5px" }}>
+                            + 参加する
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
+
+        </div>
     );
 };
 

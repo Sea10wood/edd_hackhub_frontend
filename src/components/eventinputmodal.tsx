@@ -3,7 +3,7 @@ import { Dialog, DialogTitle, DialogContent, TextField, Button, Box } from '@mui
 
 type EventData = {
     title: string;
-    date: string;
+    url: string;
     description: string;
 };
 
@@ -21,7 +21,7 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ open, onClose, onCr
     const handleCreateEvent = () => {
         onCreate({
             title: eventTitle,
-            date: eventURL,
+            url: eventURL,
             description: eventDescription,
         });
         onClose();
