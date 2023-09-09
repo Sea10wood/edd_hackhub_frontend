@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material"
+import { Box, Button, Typography } from "@mui/material"
 import { getWindowSize } from "../hooks/getWindowsize";
 import Image from "next/image";
 import HomeBlue from "../../public/Images/HomeBlue.png"
@@ -8,6 +8,18 @@ const Home = () => {
   const { height, width } = getWindowSize();
   return (
     <>
+      <Typography
+        color="#444444"
+        sx={{
+          fontWeight: "bold",
+          position: 'absolute',
+          left: '7%',
+        }}
+        variant="h3"
+        fontWeight=""
+      >
+        HackHub
+      </Typography>
       <Box
         sx={{
           width: 80,
