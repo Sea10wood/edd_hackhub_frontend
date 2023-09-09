@@ -33,14 +33,14 @@ const EventList: React.FC = () => {
             alert('イベント名を入力してください');
             return;
         }
-
+        
         try {
             const response = await fetch('/api/Category', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newEvent), // newEventを送信するように修正
+                body: JSON.stringify(newEvent.title), // newEventを送信するように修正
             });
 
             if (response.ok) {

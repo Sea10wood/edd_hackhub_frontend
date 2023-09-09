@@ -5,12 +5,19 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
         try {
-            const { eventTitle } = req.body;
+            const eventTitle = req.body;
 
-
-            const baseUrl = process.env.API_BASE_URL;
-
-            const category = baseUrl + eventTitle
+            const baseUrl = process.env.Category_BASE_URL;
+            const category = baseUrl
+            const azure = await fetch(String(baseUrl),{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ "category": eventTitle}), 
+            })
+            console.log(azure)
+            console.log(category)
             res.status(200).json({ category });
         } catch (error) {
             console.error('Error generating category:', error);
