@@ -55,6 +55,14 @@ const Home = () => {
         </Image>
       </div>
 
+      <Button
+        variant="contained" sx={{
+          position: 'absolute',
+          backgroundColor: '#A3F9FF', top: '4%',
+          right: '10%', color: '#000000'
+        }}
+      >+ イベントを追加する</Button>
+
     </>
 
   );
