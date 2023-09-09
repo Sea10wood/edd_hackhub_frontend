@@ -6,6 +6,7 @@ import CreateEventModal from "@/components/eventinputmodal";
 import EventCard from "@/components/eventcard";
 import Link from "next/link";
 import EventList from "@/components/eventList";
+import EventRoomCard from "@/components/eventRoom";
 
 
 const Home = () => {
@@ -48,12 +49,34 @@ const Home = () => {
                     }}
                 />
 
+
+                <div style={{
+                    position: 'absolute',
+                    top: '5%',
+                    left: '3%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '50%',
+                    overflow: 'hidden',
+                }}>
+                    <Link href='/profile'>
+                        <Image src={"https://github.com/Sea10wood.png"}
+                            height={50}
+                            width={50}
+                            alt={"githubアイコン"}>
+                        </Image>
+                    </Link>
+                </div>
+
+
                 <div style={{
                     position: 'absolute',
                     top: '20%',
                     left: '3%',
                     transform: 'translate(-50%, -50%)',
                 }}>
+
                     <Image src={"/images/HomeBlue.png"}
                         height={50}
                         width={50}
@@ -95,15 +118,19 @@ const Home = () => {
                 </>
 
 
-            </>
-            <div style={{
-                position: 'absolute',
-                top: '10%',
-                left: '30%',
-            }}>
 
-                <EventList />
-            </div>
+                <div style={{
+                    position: 'absolute',
+                    top: '10%',
+                    left: '10%',
+                    right: '10%',
+                }}>
+
+                    <EventList />
+                </div>
+            </>
+
+
         </>
 
 

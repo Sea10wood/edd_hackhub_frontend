@@ -1,7 +1,6 @@
-import React from 'react';
-import { Card, CardContent, Typography, Button, Paper } from '@mui/material';
+import React, { useState } from 'react';
+import { Card, CardContent, Typography, Button } from '@mui/material';
 import Link from 'next/link';
-
 
 type EventData = {
     title: string;
@@ -14,6 +13,16 @@ type EventCardProps = {
 };
 
 const EventCard = ({ event }: EventCardProps) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <div style={{ textAlign: "center" }}>
             <Card sx={{ backgroundColor: "#f5f5f5", margin: "auto", textAlign: "center" }}>
@@ -21,9 +30,6 @@ const EventCard = ({ event }: EventCardProps) => {
                     <Typography variant="h2" component="div" sx={{ fontWeight: "bold" }}>
                         {event.title}
                     </Typography>
-                    {/* <Typography color="textSecondary">
-        {event.url}
-    </Typography> */}
                     <Typography variant="h5">
                         {event.description}
                     </Typography>
@@ -33,13 +39,12 @@ const EventCard = ({ event }: EventCardProps) => {
                                 + HPへ
                             </Button>
                         </Link>
-                        <Button variant="contained" color="success" sx={{ margin: "5px" }}>
+                        <Button variant="contained" color="success" sx={{ margin: "5px" }} onClick={handleOpenModal}>
                             + 参加する
                         </Button>
                     </div>
                 </CardContent>
             </Card>
-
         </div>
     );
 };

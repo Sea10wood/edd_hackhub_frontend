@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, TextField, Button, Box } from '@mui/material';
 
+
 type EventData = {
     title: string;
     url: string;
@@ -13,25 +14,56 @@ type CreateEventModalProps = {
     onCreate: (eventData: EventData) => void;
 };
 
+
 const CreateEventModal: React.FC<CreateEventModalProps> = ({ open, onClose, onCreate }) => {
     const [eventTitle, setEventTitle] = useState('');
     const [eventURL, setEventURL] = useState('');
     const [eventDescription, setEventDescription] = useState('');
+    const [events, setEvents] = useState<EventData[]>([]);
 
-    const handleCreateEvent = () => {
+    const handleCreateEvent = async () => {
+        const newEvent = {
+            title: eventTitle,
+            url: eventURL,
+            description: eventDescription,
+        };
+    
+
         onCreate({
             title: eventTitle,
             url: eventURL,
             description: eventDescription,
         });
         onClose();
+        try {
+            const response = await fetch('/api/Category', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ eventTitle }),
+            });
+
+            if (response.ok) {
+                // リクエストが成功した場合の処理
+                console.log('Event created and sent to the server.');
+            } else {
+                // リクエストが失敗した場合の処理
+                console.error('Failed to create event.');
+            }
+        } catch (error) {
+            console.error('Error creating event:', error);
+        }
     };
+
+
 
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogTitle sx={{ marginBottom: "5%" }}>ハッカソンイベントを追加する</DialogTitle>
             <DialogContent>
                 ここに絵文字を含めないようにしてください。
+
                 <TextField
                     label="イベント名"
                     value={eventTitle}
