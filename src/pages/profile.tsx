@@ -9,7 +9,6 @@ import React from "react";
 const Profile = () => {
     const user_name = "Sea10wood"; // GitHubのユーザー名をここに指定
     const { height, width } = getWindowSize();
-
     return (
         <>
             <Typography
@@ -110,7 +109,7 @@ const Profile = () => {
                     height: "80%",
                 }}
             >
-                <Link href="https://github.com/${user_name}">
+                <Link href={`https://github.com/${user_name}`}>
                     <Button
                         variant="contained"
                         sx={{
