@@ -4,12 +4,6 @@ import Image from "next/image";
 import HomeBlue from "../../public/Images/HomeBlue.png"
 
 const Home = () => {
-  const imageStyle = {
-    position: 'absolute',
-    top: '30%',
-    left: '3%',
-    transform: 'translate(-50%, -50%)', // 中央揃え
-  };
   const { height, width } = getWindowSize();
   return (
     <>
@@ -22,7 +16,12 @@ const Home = () => {
         }}
       />
 
-      <div style={imageStyle}>
+      <div style={{
+        position: 'absolute',
+        top: '30%',
+        left: '3%',
+        transform: 'translate(-50%, -50%)',
+      }}>
         <Image src={HomeBlue}
           height={50}
           width={50}
