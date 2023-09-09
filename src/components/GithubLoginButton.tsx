@@ -1,9 +1,13 @@
 import { Button } from "@mui/material"
+import { useRouter } from "next/router"
 
 export const GitHubLoginButton = () => {
 
+  const router = useRouter()
+
   const githubOAuth = () => {
-    console.log('hello')
+    const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
+    router.push(`https://github.com/login/oauth/authorize?client_id=${githubClientId}`)
   }
 
   return (
