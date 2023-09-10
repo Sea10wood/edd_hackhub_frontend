@@ -28,7 +28,7 @@ export default function Callback() {
       })
       const response = await api.post(`${axiosBaseURL}/api/users`)
       if (response.status === 201) {
-        router.push('/')
+        router.push('/home')
       } else {
         console.error(response.statusText)
       }

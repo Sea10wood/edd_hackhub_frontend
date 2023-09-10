@@ -1,4 +1,4 @@
-import { Button } from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import { useRouter } from "next/router"
 
 export const GitHubLoginButton = () => {
