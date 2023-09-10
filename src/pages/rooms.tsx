@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import { getWindowSize } from "@/hooks/getWindowsize";
 import CreateEventModal from "@/components/eventinputmodal";
 import Link from "next/link";
-import EventRoomCard from "@/components/eventRoom";
-import EventJoin from "@/components/eventJoin";
 
 
 const Room = () => {
@@ -103,16 +101,8 @@ const Room = () => {
 
 
             </>
-            <div style={{
-                position: 'absolute',
-                top: '10%',
-                left: '30%',
-            }}>
 
-                <EventRoomCard event={eventData} />
-            </div>
 
-            <EventJoin />
         </>
 
 
