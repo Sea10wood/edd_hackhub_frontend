@@ -38,7 +38,7 @@ const Home = () => {
                     variant="h3"
                     fontWeight=""
                 >
-                    HackHub
+                    HotchPotch
                 </Typography>
                 <Box
                     sx={{

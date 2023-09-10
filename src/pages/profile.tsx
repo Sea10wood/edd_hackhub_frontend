@@ -20,7 +20,7 @@ const Profile = () => {
                 }}
                 variant="h3"
             >
-                HackHub
+                HotchPotch
             </Typography>
             <Box
                 sx={{
