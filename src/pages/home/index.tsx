@@ -77,7 +77,7 @@ const Home = () => {
                     transform: 'translate(-50%, -50%)',
                 }}>
 
-                    <Image src={"/images/HomeBlue.png"}
+                    <Image src={"/images/homeblue.png"}
                         height={50}
                         width={50}
                         alt={"拡声器ブルー"}>
