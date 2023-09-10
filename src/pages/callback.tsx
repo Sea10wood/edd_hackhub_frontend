@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
+import axios from 'axios'
+import { axiosBaseURL } from '.'
 
 export default function Callback() {
 
@@ -16,15 +18,33 @@ export default function Callback() {
     }
   }
 
+  const postUser = async () => {
+    try {
+      const api = axios.create({
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      })
+      const response = await api.post(`${axiosBaseURL}/api/users`)
+      if (response.status === 201) {
+        router.push('/')
+      } else {
+        console.error(response.statusText)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
     getToken()
   }, [router.query])
 
   useEffect(() => {
     if (token !== '') {
-      // ここでtokenをSession等に保存する
-      console.log(token)
-      router.push('/')
+      window.sessionStorage.setItem('token', token)
+      postUser()
     }
   }, [token])
 

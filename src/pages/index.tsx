@@ -2,8 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import { GitHubLoginButton } from '@/components/GithubLoginButton'
 
 const inter = Inter({ subsets: ['latin'] })
+
+export const axiosBaseURL = 'http://localhost:8080'
 
 export default function Home() {
   return (
@@ -15,6 +18,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
+        <GitHubLoginButton/>
         <div className={styles.description}>
           <p>
             Get started by editing&nbsp;
