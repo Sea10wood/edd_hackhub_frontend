@@ -13,10 +13,10 @@ export const GitHubLoginButton = () => {
 
   return (
     <div
-      style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}
+      style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}
       onClick={githubOAuth}
     >
-      <Button variant="contained" sx={{ backgroundColor: 'black' }}>GitHubで認証する</Button>
+      <Button variant="contained" sx={{ backgroundColor: 'black' }}>Login with GitHub</Button>
     </div>
   )
 }
