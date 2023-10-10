@@ -1,17 +1,53 @@
 import { Box, Button, Typography } from "@mui/material"
 import Image from "next/image";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getWindowSize } from "@/hooks/getWindowsize";
 import CreateEventModal from "@/components/eventinputmodal";
-import EventCard from "@/components/eventcard";
 import Link from "next/link";
 import EventList from "@/components/eventList";
-import EventRoomCard from "@/components/eventRoom";
+import axios from "axios";
+import { axiosBaseURL } from "..";
+import { useRouter } from "next/router";
 
 
 const Home = () => {
+
+    const router = useRouter();
     const { height, width } = getWindowSize();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+    const [name, setName] = useState<string>('');
+    const [desc, setDesc] = useState<string>('');
+    const [iconUrl, setIconUrl] = useState<string>('');
+
+    const getUserData = async (token: string) => {
+        try {
+            const response = await axios.get(`${axiosBaseURL}/api/users`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            })
+            if (response.status === 200) {
+                setName(response.data.name);
+                setDesc(response.data.description);
+                setIconUrl(response.data.iconUrl);
+            } else {
+                console.error(response.statusText)
+                router.push('/')
+            }
+        } catch (error) {
+            console.error(error)
+            router.push('/')
+        }
+    }
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        if (token !== null) {
+            getUserData(token);
+        }
+    }, []);
 
     const handleOpenModal = () => {
         setModalOpen(true);
@@ -61,7 +97,8 @@ const Home = () => {
                     overflow: 'hidden',
                 }}>
                     <Link href='/profile'>
-                        <Image src={"https://github.com/Sea10wood.png"}
+                        <Image 
+                            src={`https://github.com/${name}.png`}
                             height={50}
                             width={50}
                             alt={"githubアイコン"}>
@@ -77,7 +114,7 @@ const Home = () => {
                     transform: 'translate(-50%, -50%)',
                 }}>
 
-                    <Image src={"/images/HomeBlue.png"}
+                    <Image src={"/images/homeblue.png"}
                         height={50}
                         width={50}
                         alt={"拡声器ブルー"}>
@@ -129,7 +166,6 @@ const Home = () => {
                     <EventList />
                 </div>
             </>
-
 
         </>
 

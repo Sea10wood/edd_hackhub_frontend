@@ -1,18 +1,23 @@
 import { Button, Typography } from "@mui/material"
 
- export const GitHubLoginButton = () => {
+import { useRouter } from "next/router"
 
-   const githubOAuth = () => {
-     console.log('hello')
-   }
+export const GitHubLoginButton = () => {
 
-   return (
-     <div
-       style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}
-       onClick={githubOAuth}
-     >
-        <Typography></Typography>
-       <Button variant="contained" sx={{ backgroundColor: 'black' }}>GitHubで認証する</Button>
-     </div>
-   )
- } 
+  const router = useRouter()
+
+  const githubOAuth = () => {
+    const githubClientId = process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID
+    router.push(`https://github.com/login/oauth/authorize?client_id=${githubClientId}`)
+  }
+
+  return (
+    <div
+      style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}
+      onClick={githubOAuth}
+    >
+      <Button variant="contained" sx={{ backgroundColor: 'black' }}>GitHubで認証する</Button>
+    </div>
+  )
+}
+
