@@ -8,3 +8,29 @@
 body {
   margin: 0
 }
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  font-size: 36px;
+  font-weight: bold;
+  white-space: nowrap; 
+  overflow: hidden; 
+}
+
+.text {
+  animation: scrollTranslation 20s linear infinite; 
+  white-space: nowrap;
+}
+
+@keyframes scrollTranslation {
+  0% {
+      transform: translateX(1000px); 
+  }
+  100% {
+      transform: translateX(-1000px); 
+  }
+}

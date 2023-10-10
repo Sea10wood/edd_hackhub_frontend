@@ -8,8 +8,6 @@ import TopTypo from '@/components/Typography'
 import { GitHubLoginButton } from '@/components/GithubLoginButton'
 import { Typography } from '@mui/material'
 
-
-
 const inter = Inter({ subsets: ['latin'] })
 
 export const axiosBaseURL = 'http://localhost:8080'
@@ -30,9 +28,11 @@ export default function Index() {
       <Typography sx={{ fontWeight: "bold",  fontSize: "120px"}}>Hack Hub</Typography>
       <Typography sx={{ fontWeight: "bold",  fontSize: "50px" }}>Created by Hotch Potch</Typography>
         </div>
-      <div style={{marginTop:"10vh"}}>
+      <div style={{marginTop:"10vh", marginBottom: "10vh"}}>
         <GitHubLoginButton/>
-      </div>
+      </div> 
+       <div className="text" style={{fontWeight: "bold", fontSize: "40px"}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ハッカソン好きの&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ハッカソン好きによる&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ハッカソン好きのための&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hack Hub</div>
+      
 
       </main>
 
