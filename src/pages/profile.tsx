@@ -1,6 +1,5 @@
 import GithubMostLanguage from "@/components/githubMostUsedLanguage";
 import GitHubStatsCard from "@/components/githubStatusCard";
-import { getWindowSize } from "@/hooks/getWindowsize";
 import { Box, Button, Card, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +11,6 @@ import { useRouter } from "next/router";
 const Profile = () => {
 
     const router = useRouter();
-    const { height, width } = getWindowSize();
 
     const [name, setName] = useState<string>('');
     const [desc, setDesc] = useState<string>('');
@@ -63,7 +61,7 @@ const Profile = () => {
             <Box
                 sx={{
                     width: 80,
-                    height: height,
+                    height: "100vh",
                     backgroundColor: "#444444",
                     position: "relative",
                 }}

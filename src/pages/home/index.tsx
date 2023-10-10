@@ -1,7 +1,6 @@
 import { Box, Button, Typography } from "@mui/material"
 import Image from "next/image";
 import React, { useEffect, useState } from 'react';
-import { getWindowSize } from "@/hooks/getWindowsize";
 import CreateEventModal from "@/components/eventinputmodal";
 import Link from "next/link";
 import EventList from "@/components/eventList";
@@ -13,7 +12,6 @@ import { useRouter } from "next/router";
 const Home = () => {
 
     const router = useRouter();
-    const { height, width } = getWindowSize();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     const [name, setName] = useState<string>('');
@@ -79,7 +77,7 @@ const Home = () => {
                 <Box
                     sx={{
                         width: 80,
-                        height: height,
+                        height: "100vh",
                         backgroundColor: '#444444',
                         position: 'relative',
                     }}

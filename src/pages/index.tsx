@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 
-import TopTypo from '@/components/Typography'
 
 import { GitHubLoginButton } from '@/components/GithubLoginButton'
 import { Typography } from '@mui/material'

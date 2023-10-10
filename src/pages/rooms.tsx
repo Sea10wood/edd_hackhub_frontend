@@ -1,13 +1,11 @@
 import { Box, Button, Typography } from "@mui/material"
 import Image from "next/image";
 import React, { useState } from 'react';
-import { getWindowSize } from "@/hooks/getWindowsize";
 import CreateEventModal from "@/components/eventinputmodal";
 import Link from "next/link";
 
 
 const Room = () => {
-    const { height, width } = getWindowSize();
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
     const handleOpenModal = () => {
@@ -44,7 +42,7 @@ const Room = () => {
                 <Box
                     sx={{
                         width: 80,
-                        height: height,
+                        height: "100vh",
                         backgroundColor: '#444444',
                         position: 'relative',
                     }}
