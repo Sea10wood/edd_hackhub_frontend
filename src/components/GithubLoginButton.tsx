@@ -1,4 +1,5 @@
 import { Button, Typography } from "@mui/material"
+
 import { useRouter } from "next/router"
 
 export const GitHubLoginButton = () => {
@@ -19,3 +20,4 @@ export const GitHubLoginButton = () => {
     </div>
   )
 }
+
