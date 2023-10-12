@@ -9,7 +9,7 @@ import { axiosBaseURL } from ".";
 import { useRouter } from "next/router";
 import Sidebar from "@/components/layout";
 
-const Profile = () => {
+const Profile = (props: {name: string}) => {
 
     const router = useRouter();
 
@@ -58,13 +58,13 @@ const Profile = () => {
                 sx={{
                     fontWeight: "bold",
                     position: "absolute",
-                    top: "8%",
-                    left: "8%",
-                    width: "150%",
+                    top: "50px",
+                    left: "100px",
+                    fontSize: "2vw",
                 }}
-                variant="h4"
+             
             >
-             {name}のGitHubプロフィール
+             {props.name}のGitHubプロフィール
             </Typography>
 
             <Card
@@ -76,13 +76,13 @@ const Profile = () => {
                     height: "80%",
                 }}
             >
-                <Link href={`https://github.com/${name}`}>
+                <Link href={`https://github.com/${props.name}`}>
                     <Button
                         variant="contained"
                         sx={{
                             position: "absolute",
-                            top: "8%",
-                            right: "15%",
+                            top: "10px",
+                            right: "15px",
                             color: "#ffffff",
                             backgroundColor: "#000000"
 
@@ -94,8 +94,8 @@ const Profile = () => {
                 <div
                     style={{
                         position: "absolute",
-                        top: "15%",
-                        left: "30%",
+                        top: "150px",
+                        left: "180px",
                     }}
                 >
                     <GitHubStatsCard name={name} />
