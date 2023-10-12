@@ -69,7 +69,9 @@ const EventList: React.FC = () => {
         <div>
             {/* 新しいイベントを追加するフォーム */}
             <div>
-                <h2>新しいイベントを追加</h2>
+                <div style={{marginLeft: '20px'}}>
+                <h2>イベント一覧</h2>
+                </div>
                 <input
                     type="text"
                     placeholder="イベント名"

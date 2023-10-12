@@ -13,13 +13,29 @@ type CreateEventModalProps = {
     onClose: () => void;
     onCreate: (eventData: EventData) => void;
 };
+const initialEvents: EventData[] = [
+    {
+        title: 'EDDハッカソン',
+        url: 'https://efc.fukuoka.jp/edd2023/',
+        description: 'Engineer Driven Day（EDD）とは、エンジニアフレンドリーシティ福岡(EFC)が、2022年から開催しているハッカソン・コンテストです。ハッカソンは独自のアイディアをもとにアプリやサービスを開発し、競い合うイベントのこと',
+    },
+];
 
 
 const CreateEventModal: React.FC<CreateEventModalProps> = ({ open, onClose, onCreate }) => {
     const [eventTitle, setEventTitle] = useState('');
     const [eventURL, setEventURL] = useState('');
     const [eventDescription, setEventDescription] = useState('');
-    const [events, setEvents] = useState<EventData[]>([]);
+    const [events, setEvents] = useState<EventData[]>(initialEvents);
+
+
+    // 新しいイベントのフォーム入力値を管理するステート
+    const [newEvent, setNewEvent] = useState<EventData>({
+        title: '',
+        url: '',
+        description: '',
+    });
+   
 
     const handleCreateEvent = async () => {
         const newEvent = {
@@ -56,6 +72,42 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ open, onClose, onCr
         }
     };
 
+    const handleAddEvent = async () => {
+        if (newEvent.title.trim() === '') {
+            alert('イベント名を入力してください');
+            return;
+        }
+        
+        try {
+            const response = await fetch('/api/Category', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newEvent.title), 
+            });
+
+            if (response.ok) {
+                // リクエストが成功した場合の処理
+                console.log('Event created and sent to the server.');
+            } else {
+                // リクエストが失敗した場合の処理
+                console.error('Failed to create event.');
+            }
+        } catch (error) {
+            console.error('Error creating event:', error);
+        }
+
+        setEvents([...events, newEvent]);
+
+        // 入力フォームをリセット
+        setNewEvent({
+            title: '',
+            url: '',
+            description: '',
+        });
+    };
+
 
 
     return (
@@ -65,29 +117,32 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({ open, onClose, onCr
                 ここに絵文字を含めないようにしてください。
 
                 <TextField
-                    label="イベント名"
-                    value={eventTitle}
-                    onChange={(e) => setEventTitle(e.target.value)}
+                            type="text"
+                            placeholder="イベント名"
+                            value={newEvent.title}
+                            onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
                     fullWidth
                     sx={{ marginBottom: "5%" }}
                 />
                 <TextField
-                    label="HP URL"
-                    value={eventURL}
-                    onChange={(e) => setEventURL(e.target.value)}
+                    type="text"
+                    placeholder="HP URL"
+                    value={newEvent.url}
+                    onChange={(e) => setNewEvent({ ...newEvent, url: e.target.value })}
                     fullWidth
                     sx={{ marginBottom: "5%" }}
                 />
                 <TextField
-                    label="イベント詳細"
-                    value={eventDescription}
-                    onChange={(e) => setEventDescription(e.target.value)}
+                  type="text"
+                  placeholder="説明"
+                  value={newEvent.description}
+                  onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
                     fullWidth
                     sx={{ marginBottom: "5%" }}
                 />
                 <Box display="flex" justifyContent="center">
 
-                    <Button variant="contained" color="primary" onClick={handleCreateEvent} >
+                    <Button variant="contained" color="primary" onClick={handleAddEvent} >
                         イベントを作成する
                     </Button>
                 </Box>
