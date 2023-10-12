@@ -34,3 +34,63 @@ body {
       transform: translateX(-1000px); 
   }
 }
+
+
+.icon-container {
+  position: relative;
+  display: inline-block;
+}
+
+  .normal-icon {
+    position: absolute;
+    top: 30%;
+    left: 3%;
+    transform: translate(-50%, -50%);
+  }
+  
+
+
+.hover-icon {
+  display: none; /* ホバー時に非表示 */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.icon-container:hover .normal-icon {
+  display: none; /* ホバー時に通常のアイコンを非表示 */
+}
+
+.icon-container:hover .hover-icon {
+  display: inline-block; /* ホバー時にホバー用のアイコンを表示 */
+}
+
+.icon-home-container {
+  position: relative;
+  display: inline-block;
+}
+
+  .normal-home-icon {
+    position: absolute;
+    top: 20%;
+    left: 3%;
+    transform: translate(-50%, -50%);
+  }
+  
+
+
+.hover-home-icon {
+  display: none; /* ホバー時に非表示 */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.icon-home-container:hover .normal-icon {
+  display: none; /* ホバー時に通常のアイコンを非表示 */
+}
+
+.icon-home-container:hover .hover-icon {
+  display: inline-block; /* ホバー時にホバー用のアイコンを表示 */
+}
+

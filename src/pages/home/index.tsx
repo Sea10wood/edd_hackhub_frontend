@@ -7,6 +7,7 @@ import EventList from "@/components/eventList";
 import axios from "axios";
 import { axiosBaseURL } from "..";
 import { useRouter } from "next/router";
+import Sidebar from "@/components/layout";
 
 
 const Home = () => {
@@ -45,6 +46,21 @@ const Home = () => {
         if (token !== null) {
             getUserData(token);
         }
+        const getAccessToken =async (code:string)=>{
+            try{
+                const client_id = process.env["NEXT_PUBLIC_GITHUB_CLIENT_ID"]
+                const client_secret = process.env["NEXT_PUBLIC_GITHUB_CLIENT_SECRET"]
+                const res = await axios.post("https://github.com/login/oauth/access_token",{code,client_id,client_secret},{headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",}})
+                console.log(res)
+            }catch(err){
+                console.error(err)
+            }
+        }
+        const {code} = router.query
+        console.log(router.query)
+        getAccessToken("5bd085978625fae82600")
     }, []);
 
     const handleOpenModal = () => {
@@ -62,86 +78,13 @@ const Home = () => {
     return (
         <>
             <>
-                <Typography
-                    color="#444444"
-                    sx={{
-                        fontWeight: "bold",
-                        position: 'absolute',
-                        left: '7%',
-                    }}
-                    variant="h3"
-                    fontWeight=""
-                >
-                    HotchPotch
-                </Typography>
-                <Box
-                    sx={{
-                        width: 80,
-                        height: "100vh",
-                        backgroundColor: '#444444',
-                        position: 'relative',
-                    }}
-                />
-
-
-                <div style={{
-                    position: 'absolute',
-                    top: '5%',
-                    left: '3%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '50px',
-                    height: '50px',
-                    borderRadius: '50%',
-                    overflow: 'hidden',
-                }}>
-                    <Link href='/profile'>
-                        <Image 
-                            src={`https://github.com/${name}.png`}
-                            height={50}
-                            width={50}
-                            alt={"githubアイコン"}>
-                        </Image>
-                    </Link>
-                </div>
-
-
-                <div style={{
-                    position: 'absolute',
-                    top: '20%',
-                    left: '3%',
-                    transform: 'translate(-50%, -50%)',
-                }}>
-
-                    <Image src={"/images/homeblue.png"}
-                        height={50}
-                        width={50}
-                        alt={"拡声器ブルー"}>
-                    </Image>
-                </div>
-                <div style={{
-                    position: 'absolute',
-                    top: '30%',
-                    left: '3%',
-                    transform: 'translate(-50%, -50%)',
-                }}>
-                    <Link href='/rooms'>
-
-
-                        <Image src={"/images/room.png"}
-                            height={50}
-                            width={50}
-                            alt={"ルーム白"}>
-                        </Image>
-                    </Link>
-                </div>
-
-                <>
+                <Sidebar/>
 
                     <Button
                         variant="contained" sx={{
                             position: 'absolute',
                             backgroundColor: '#A3F9FF', top: '4%',
-                            right: '10%', color: '#000000',
+                            right: '40px', color: '#000000',
                             fontWeight: "bold"
                         }} onClick={handleOpenModal}
                     >+ イベントを追加する</Button>
@@ -150,15 +93,16 @@ const Home = () => {
                         onClose={handleCloseModal}
                         onCreate={handleCreateEvent}
                     />
-                </>
+            
 
 
 
                 <div style={{
                     position: 'absolute',
-                    top: '10%',
-                    left: '10%',
-                    right: '10%',
+                    top: '100px',
+                    left: '120px',
+                    right: '30px'
+                    
                 }}>
 
                     <EventList />

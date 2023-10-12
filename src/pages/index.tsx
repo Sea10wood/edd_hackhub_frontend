@@ -22,15 +22,20 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <div style={{marginTop:"20vh"}}>
+        <div style={{marginTop:"5vh"}}>
 
-      <Typography sx={{ fontWeight: "bold",  fontSize: "120px"}}>Hack Hub</Typography>
-      <Typography sx={{ fontWeight: "bold",  fontSize: "50px" }}>Created by Hotch Potch</Typography>
+      <Typography sx={{ fontWeight: "bold",  fontSize: "12vw"}}>Hack Hub</Typography>
+      <Typography sx={{ fontWeight: "bold",  fontSize: "5vw" }}>Created by Hotch Potch</Typography>
         </div>
       <div style={{marginTop:"10vh", marginBottom: "10vh"}}>
         <GitHubLoginButton/>
       </div> 
-       <div className="text" style={{fontWeight: "bold", fontSize: "40px"}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ハッカソン好きの&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ハッカソン好きによる&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ハッカソン好きのための&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hack Hub</div>
+      <div style={{overflow:"hidden"}}>
+
+       <div className="text" style={{fontWeight: "bold", fontSize: "40px",}}>
+        {"　　　　　　　　　　　　　　ハッカソン好きの　　　　　　　　　　　　ハッカソン好きによる　　　　　　　　　　　　　ハッカソン好きのための　　　　　　　　　　　　　　　　　　　Hack Hub"}
+        </div>
+      </div>
       
 
       </main>
