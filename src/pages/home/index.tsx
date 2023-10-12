@@ -83,11 +83,11 @@ const Home = () => {
                     <Button
                         variant="contained" sx={{
                             position: 'absolute',
-                            backgroundColor: '#A3F9FF', top: '4%',
-                            right: '40px', color: '#000000',
+                            backgroundColor: '#ffffff', top: '240px',
+                            left: '9px', color: '#000000',
                             fontWeight: "bold"
                         }} onClick={handleOpenModal}
-                    >+ イベントを追加する</Button>
+                    >+</Button>
                     <CreateEventModal
                         open={modalOpen}
                         onClose={handleCloseModal}
