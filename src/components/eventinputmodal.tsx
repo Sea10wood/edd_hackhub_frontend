@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, TextField, Button, Box } from '@mui/material';
+import EventCard from './eventcard';
 
 
 type EventData = {

@@ -72,7 +72,7 @@ const EventList: React.FC = () => {
                 <div style={{marginLeft: '20px'}}>
                 <h2>イベント一覧</h2>
                 </div>
-                <input
+                {/* <input
                     type="text"
                     placeholder="イベント名"
                     value={newEvent.title}
@@ -90,7 +90,7 @@ const EventList: React.FC = () => {
                     value={newEvent.description}
                     onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
                 />
-                <button onClick={handleAddEvent}>追加</button>
+                <button onClick={handleAddEvent}>追加</button> */}
             </div>
 
             {/* イベント一覧 */}

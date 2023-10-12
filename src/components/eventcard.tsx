@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, Typography, Button } from '@mui/material';
 import Link from 'next/link';
-
+import { AiOutlinePlus } from 'react-icons/ai';
 type EventData = {
     title: string;
     url: string;
@@ -39,8 +39,11 @@ const EventCard = ({ event }: EventCardProps) => {
                                 + HPへ
                             </Button>
                         </Link>
-                        <Button variant="contained" color="success" sx={{ margin: "5px" }} onClick={handleOpenModal}>
-                            + 参加する
+                        <Button variant="contained" color="success" sx={{ margin: "5px" }} onClick={handleOpenModal} startIcon={<AiOutlinePlus/>}>
+                             個人で参加する
+                        </Button>
+                        <Button variant="contained" color="secondary" sx={{ margin: "5px" }} onClick={handleOpenModal}>
+                            + チームを募集する
                         </Button>
                     </div>
                 </CardContent>
