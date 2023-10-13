@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Card, CardContent, Typography, Button } from "@mui/material";
 import Link from "next/link";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineLink, AiOutlinePlus } from "react-icons/ai";
+import { BsFillPeopleFill, BsFillPersonPlusFill } from "react-icons/bs";
 import moment from "moment";
 
 type EventData = {
@@ -34,13 +35,13 @@ const EventCard = ({ event }: EventCardProps) => {
 
   if (eventDeadline.isAfter(currentTime)) {
     messageComponent = (
-      <Typography component="div" sx={{ color: "red" }}>
+      <Typography component="div" sx={{ color: "red", fontSize: "1.5vw" }}>
         申し込み締め切り
       </Typography>
     );
   } else {
     messageComponent = (
-      <Typography component="div" sx={{ color: "red" }}>
+      <Typography component="div" sx={{ color: "red", fontSize: "1.5vw" }}>
         募集締切日まであと = {daysUntilDeadline}
       </Typography>
     );
@@ -83,8 +84,9 @@ const EventCard = ({ event }: EventCardProps) => {
                 variant="contained"
                 color="primary"
                 sx={{ margin: "5px" }}
+                startIcon={<AiOutlineLink />}
               >
-                HPへ
+                URLへ
               </Button>
             </Link>
             <Button
@@ -92,7 +94,7 @@ const EventCard = ({ event }: EventCardProps) => {
               color="success"
               sx={{ margin: "5px" }}
               onClick={handleOpenModal}
-              startIcon={<AiOutlinePlus />}
+              startIcon={<BsFillPersonPlusFill />}
             >
               個人で参加する
             </Button>
@@ -101,7 +103,7 @@ const EventCard = ({ event }: EventCardProps) => {
               color="secondary"
               sx={{ margin: "5px" }}
               onClick={handleOpenModal}
-              startIcon={<AiOutlinePlus />}
+              startIcon={<BsFillPeopleFill />}
             >
               チームを募集する
             </Button>

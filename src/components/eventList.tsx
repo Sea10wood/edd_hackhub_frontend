@@ -10,7 +10,6 @@ type EventData = {
 };
 
 const EventList: React.FC = () => {
-  // イベント一覧の初期データ
   const initialEvents: EventData[] = [
     {
       title: "EDDハッカソン",
@@ -22,10 +21,8 @@ const EventList: React.FC = () => {
     },
   ];
 
-  // イベント一覧のステート
   const [events, setEvents] = useState<EventData[]>(initialEvents);
 
-  // 新しいイベントのフォーム入力値を管理するステート
   const [newEvent, setNewEvent] = useState<EventData>({
     title: "",
     url: "",
@@ -47,14 +44,12 @@ const EventList: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newEvent.title), // newEventを送信するように修正
+        body: JSON.stringify(newEvent.title),
       });
 
       if (response.ok) {
-        // リクエストが成功した場合の処理
         console.log("Event created and sent to the server.");
       } else {
-        // リクエストが失敗した場合の処理
         console.error("Failed to create event.");
       }
     } catch (error) {
@@ -101,8 +96,6 @@ const EventList: React.FC = () => {
                 />
                 <button onClick={handleAddEvent}>追加</button> */}
       </div>
-
-      {/* イベント一覧 */}
       {events.map((event, index) => (
         <EventCard key={index} event={event} />
       ))}
