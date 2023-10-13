@@ -165,7 +165,7 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({
         />
         <TextField
           type="text"
-          placeholder="募集締切日"
+          placeholder="募集締切日（YYYY-MM-DDTHH:mm:ss）"
           value={newEvent.deadline}
           onChange={(e) =>
             setNewEvent({ ...newEvent, deadline: e.target.value })
