@@ -1,4 +1,3 @@
-import { GetWindowSize } from "@/hooks/getWindowSize";
 import { axiosBaseURL } from "@/pages";
 import { Box, Typography } from "@mui/material";
 import axios from "axios";
@@ -35,7 +34,6 @@ const Sidebar = () => {
   const handleIconClick = (icon: string) => {
     setSelectedIcon(icon);
   };
-  const { height, width } = GetWindowSize();
 
   return (
     <>
@@ -44,8 +42,9 @@ const Sidebar = () => {
           color="#000000"
           sx={{
             fontWeight: "bold",
-            position: "absolute",
+            position: "fixed",
             left: "100px",
+            top: "10px",
           }}
           variant="h3"
         >
