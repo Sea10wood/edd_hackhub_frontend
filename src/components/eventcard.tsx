@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AiOutlineLink, AiOutlinePlus } from "react-icons/ai";
 import { BsFillPeopleFill, BsFillPersonPlusFill } from "react-icons/bs";
 import moment from "moment";
+import CreateTeamModal from "./teaminputmodal";
 
 type EventData = {
   title: string;
@@ -21,14 +22,14 @@ const EventCard = ({ event }: EventCardProps) => {
   const eventDeadline = moment(event.deadline);
   const currentTime = moment().format("YYYY-MM-DDTHH:mm:ss");
   const daysUntilDeadline: number = eventDeadline.diff(currentTime, "days");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen1, setIsModalOpen1] = useState(false);
 
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  const handleOpenModal1 = () => {
+    setIsModalOpen1(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleCloseModal1 = () => {
+    setIsModalOpen1(false);
   };
 
   let messageComponent;
@@ -45,6 +46,13 @@ const EventCard = ({ event }: EventCardProps) => {
         募集締切日まであと = {daysUntilDeadline}
       </Typography>
     );
+  }
+  type TeamData = {
+    name: string;
+    details: string;
+  };
+  function handleCreateTeam(teamData: TeamData): void {
+    throw new Error("Function not implemented.");
   }
 
   return (
@@ -89,24 +97,30 @@ const EventCard = ({ event }: EventCardProps) => {
                 URLへ
               </Button>
             </Link>
-            <Button
-              variant="contained"
-              color="success"
-              sx={{ margin: "5px" }}
-              onClick={handleOpenModal}
-              startIcon={<BsFillPersonPlusFill />}
-            >
-              個人で参加する
-            </Button>
+            <Link href={event.url} passHref>
+              <Button
+                variant="contained"
+                color="success"
+                sx={{ margin: "5px" }}
+                startIcon={<BsFillPersonPlusFill />}
+              >
+                個人で参加する
+              </Button>
+            </Link>
             <Button
               variant="contained"
               color="secondary"
               sx={{ margin: "5px" }}
-              onClick={handleOpenModal}
+              onClick={handleOpenModal1}
               startIcon={<BsFillPeopleFill />}
             >
               チームを募集する
             </Button>
+            <CreateTeamModal
+              open={isModalOpen1}
+              onClose={handleCloseModal1}
+              onCreate={handleCreateTeam}
+            />
           </div>
         </CardContent>
       </Card>
