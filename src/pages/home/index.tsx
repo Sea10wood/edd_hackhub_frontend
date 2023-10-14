@@ -12,6 +12,7 @@ import Link from "next/link";
 import Sidebar from "@/components/layout";
 import { FcPlus } from "react-icons/fc";
 import EventCard from "@/components/eventcard";
+import { useEventContext } from "@/contexts/EventContext";
 
 type EventData = {
   title: string;
@@ -28,6 +29,7 @@ type CreateEventModalProps = {
 };
 
 const Home = () => {
+  const { addEventTitle } = useEventContext();
   const initialEvents: EventData[] = [
     {
       title: "EDDハッカソン",
@@ -52,7 +54,10 @@ const Home = () => {
   };
 
   const handleCreateEvent = async (eventData: EventData) => {
+    addEventTitle(eventData.title);
     setEvents([...events, eventData]);
+    addEventTitle(eventData.title);
+
     handleCloseModal();
     try {
       const response = await fetch("/api/Category", {
@@ -60,7 +65,7 @@ const Home = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(eventData),
+        body: JSON.stringify(addEventTitle),
       });
 
       if (response.ok) {
@@ -121,7 +126,7 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({
     day: "",
   });
 
-  const handleAddEvent = () => {
+  const handleAddEvent = async () => {
     const eventData = {
       title: newEvent.title,
       url: newEvent.url,
@@ -134,8 +139,27 @@ const CreateEventModal: React.FC<CreateEventModalProps> = ({
       alert("イベント名を入力してください");
       return;
     }
+    try {
+      const response = await fetch("/api/Category", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newEvent.title),
+      });
 
-    onCreate(eventData); // イベントを作成
+      if (response.ok) {
+        // リクエストが成功した場合の処理
+        console.log("Event created and sent to the server.");
+      } else {
+        // リクエストが失敗した場合の処理
+        console.error("Failed to create event.");
+      }
+    } catch (error) {
+      console.error("Error creating event:", error);
+    }
+
+    onCreate(eventData);
     setNewEvent({
       title: "",
       url: "",
