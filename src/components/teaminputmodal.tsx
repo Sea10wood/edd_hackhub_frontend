@@ -7,7 +7,6 @@ import {
   Button,
   Box,
 } from "@mui/material";
-import EventCard from "./eventcard";
 
 type EventData = {
   title: string;
@@ -48,7 +47,7 @@ const CreateTeamModal: React.FC<CreateTeamModalProps> = ({
   });
 
   const handleCreateTeam = async () => {
-    const newEvent = {
+    const newTeam = {
       name: teamName,
       details: teamDetail,
     };
@@ -84,7 +83,7 @@ const CreateTeamModal: React.FC<CreateTeamModalProps> = ({
     }
 
     try {
-      const response = await fetch("/api/Teams", {
+      const response = await fetch("/api/Category", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
