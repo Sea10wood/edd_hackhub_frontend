@@ -59,23 +59,6 @@ const Home = () => {
     addEventTitle(eventData.title);
 
     handleCloseModal();
-    try {
-      const response = await fetch("/api/Category", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(addEventTitle),
-      });
-
-      if (response.ok) {
-        console.log("Event created and sent to the server.");
-      } else {
-        console.error("Failed to create event.");
-      }
-    } catch (error) {
-      console.error("Error creating event:", error);
-    }
   };
 
   return (
