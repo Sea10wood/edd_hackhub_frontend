@@ -3,8 +3,7 @@ import { Card, CardContent, Typography, Button } from "@mui/material";
 import Link from "next/link";
 import { AiOutlineLink, AiOutlinePlus } from "react-icons/ai";
 import { BsFillPeopleFill, BsFillPersonPlusFill } from "react-icons/bs";
-import moment from "moment";
-import CreateTeamModal from "./teaminputmodal";
+import CreateMembenJoinModal from "./CreateMembenJoinModal";
 
 type EventData = {
   title: string;
@@ -14,39 +13,35 @@ type EventData = {
   day: string;
 };
 
-type EventCardProps = {
+type TeamCardProps = {
   event: EventData;
+  team: TeamData;
 };
 
-const EventCard = ({ event }: EventCardProps) => {
-  const eventDeadline = moment(event.deadline);
-  const currentTime = moment().format("YYYY-MM-DDTHH:mm:ss");
-  const daysUntilDeadline: number = eventDeadline.diff(currentTime, "days");
-  const [isModalOpen1, setIsModalOpen1] = useState(false);
+type TeamData = {
+  name: string;
+  details: string;
+};
+const initialTeam: TeamData[] = [
+  {
+    name: "HotchPotch",
+    details: "Hackathonbotを作成",
+  },
+];
 
-  const handleOpenModal1 = () => {
-    setIsModalOpen1(true);
+const TeamMemberCard = ({ event, team }: TeamCardProps) => {
+  const [isModalOpen2, setIsModalOpen2] = useState(false);
+
+  const handleOpenModal2 = () => {
+    setIsModalOpen2(true);
   };
 
-  const handleCloseModal1 = () => {
-    setIsModalOpen1(false);
+  const handleCloseModal2 = () => {
+    setIsModalOpen2(false);
   };
 
   let messageComponent;
 
-  if (eventDeadline.isAfter(currentTime)) {
-    messageComponent = (
-      <Typography component="div" sx={{ color: "red", fontSize: "1.5vw" }}>
-        申し込み締め切り
-      </Typography>
-    );
-  } else {
-    messageComponent = (
-      <Typography component="div" sx={{ color: "red", fontSize: "1.5vw" }}>
-        募集締切日まであと = {daysUntilDeadline}
-      </Typography>
-    );
-  }
   type TeamData = {
     name: string;
     details: string;
@@ -65,38 +60,20 @@ const EventCard = ({ event }: EventCardProps) => {
             component="div"
             sx={{ fontWeight: "bold", marginLeft: "1%", fontSize: "4vw" }}
           >
-            {event.title}
+            {team.name}
           </Typography>
           <Typography
             component="div"
             sx={{ fontWeight: "bold", marginLeft: "1%", fontSize: "2vw" }}
           >
-            ・ 申し込み締め切り：{event.deadline}
+            {team.details}
           </Typography>
-          {messageComponent}
-          <Typography
-            component="div"
-            sx={{ fontWeight: "bold", marginLeft: "1%", fontSize: "2vw" }}
-          >
-            ・ イベント日程：{event.day}
-          </Typography>
-          <Typography sx={{ fontSize: "2vw" }}>{event.description}</Typography>
           <div
             style={{
               display: "flex",
               alignItems: "center",
             }}
           >
-            <Link href={event.url} passHref>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{ margin: "5px" }}
-                startIcon={<AiOutlineLink />}
-              >
-                URLへ
-              </Button>
-            </Link>
             <Link href={event.url} passHref>
               <Button
                 variant="contained"
@@ -109,16 +86,16 @@ const EventCard = ({ event }: EventCardProps) => {
             </Link>
             <Button
               variant="contained"
-              color="secondary"
+              color="primary"
               sx={{ margin: "5px" }}
-              onClick={handleOpenModal1}
+              onClick={handleOpenModal2}
               startIcon={<BsFillPeopleFill />}
             >
-              チームを募集する
+              チームの参加希望一覧をみる/参加を希望する
             </Button>
-            <CreateTeamModal
-              open={isModalOpen1}
-              onClose={handleCloseModal1}
+            <CreateMembenJoinModal
+              open={isModalOpen2}
+              onClose={handleCloseModal2}
               onCreate={handleCreateTeam}
             />
           </div>
@@ -128,4 +105,4 @@ const EventCard = ({ event }: EventCardProps) => {
   );
 };
 
-export default EventCard;
+export default TeamMemberCard;
